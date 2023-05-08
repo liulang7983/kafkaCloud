@@ -29,7 +29,7 @@ public class MyConsumer {
         ack.acknowledge();
     }
 
-    //配置多个消费组
+    //配置多个消费组，那么此时test0的同一个消息两个消费组都可以消费到
     @KafkaListener(topics = "test0",groupId = "tulingGroup")
     public void listenTulingGroup(ConsumerRecord<String, String> record, Acknowledgment ack) {
         System.out.println();
@@ -40,7 +40,7 @@ public class MyConsumer {
         System.out.println();
         ack.acknowledge();
     }
-
+    //消费组一个消费者好几个，同一个消息只有一个消费者可以消费到
     @KafkaListener(topics = "topic0",groupId = "limingGroup")
     public void listenLimingGroup1(ConsumerRecord<String, String> record, Acknowledgment ack) {
         System.out.println();
