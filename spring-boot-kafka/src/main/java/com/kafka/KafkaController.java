@@ -55,4 +55,12 @@ public class KafkaController {
         }
     }
 
+    @RequestMapping("/topic1")
+    public void topic1() throws  Exception{
+        System.out.println("写入");
+        for (int i = 0; i < 100; i++) {
+            ListenableFuture<SendResult<String, String>> send = kafkaTemplate.send("topic1",  "key"+i, "this is a msg");
+        }
+    }
+
 }

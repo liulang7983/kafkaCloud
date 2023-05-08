@@ -40,7 +40,7 @@ public class MyConsumer {
         System.out.println();
         ack.acknowledge();
     }
-    //消费组一个消费者好几个，同一个消息只有一个消费者可以消费到
+    //消费组一个消费者好几个，同一个消息只有一个消费者可以消费到(分片为1)
     @KafkaListener(topics = "topic0",groupId = "limingGroup")
     public void listenLimingGroup1(ConsumerRecord<String, String> record, Acknowledgment ack) {
         System.out.println();
@@ -56,6 +56,29 @@ public class MyConsumer {
     public void listenLimingGroup2(ConsumerRecord<String, String> record, Acknowledgment ack) {
         System.out.println();
         System.out.println("进入limingGroup2");
+        String value = record.value();
+        System.out.println("limingGroup2的value:"+value);
+        System.out.println("limingGroup2的record:"+record);
+        System.out.println();
+        ack.acknowledge();
+    }
+
+    //消费组一个消费者好几个，同一个消息只有一个消费者可以消费到(分片为3)
+    @KafkaListener(topics = "topic1",groupId = "topic1Group")
+    public void topic1Group1(ConsumerRecord<String, String> record, Acknowledgment ack) {
+        System.out.println();
+        System.out.println("进入topic1Group1");
+        String value = record.value();
+        System.out.println("limingGroup1的value:"+value);
+        System.out.println("limingGroup1的record:"+record);
+        System.out.println();
+        ack.acknowledge();
+    }
+
+    @KafkaListener(topics = "topic1",groupId = "topic1Group")
+    public void topic1Group2(ConsumerRecord<String, String> record, Acknowledgment ack) {
+        System.out.println();
+        System.out.println("进入topic1Group2");
         String value = record.value();
         System.out.println("limingGroup2的value:"+value);
         System.out.println("limingGroup2的record:"+record);
