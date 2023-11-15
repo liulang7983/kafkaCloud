@@ -22,8 +22,7 @@ public class MyConsumer {
         System.out.println();
         System.out.println("进入zhugeGroup");
         String value = record.value();
-        System.out.println("zhugeGroup的value:"+value);
-        System.out.println("zhugeGroup的value:"+record);
+        System.out.println(value);
         System.out.println();
         //手动提交offset
         ack.acknowledge();
@@ -35,8 +34,7 @@ public class MyConsumer {
         System.out.println();
         System.out.println("进入tulingGroup");
         String value = record.value();
-        System.out.println("tulingGroup的value:"+value);
-        System.out.println("tulingGroup的record:"+record);
+        System.out.println(value);
         System.out.println();
         ack.acknowledge();
     }

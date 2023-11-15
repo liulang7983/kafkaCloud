@@ -13,6 +13,7 @@
         <module>spring-boot-kafka</module>
         <module>redisCloud</module>
         <module>redisCloud1</module>
+        <module>spring-boot-kafka1</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>

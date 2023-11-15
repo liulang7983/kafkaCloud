@@ -10,6 +10,7 @@
         <module name="kafkaCloud1" />
         <module name="redisCloud" />
         <module name="spring-boot-kafka" />
+        <module name="spring-boot-kafka1" />
       </profile>
     </annotationProcessing>
   </component>
@@ -19,6 +20,7 @@
       <module name="redisCloud" options="-parameters" />
       <module name="redisCloud1" options="-parameters" />
       <module name="spring-boot-kafka" options="-parameters" />
+      <module name="spring-boot-kafka1" options="-parameters" />
     </option>
   </component>
 </project>

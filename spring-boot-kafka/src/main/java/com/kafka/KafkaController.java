@@ -63,4 +63,35 @@ public class KafkaController {
         }
     }
 
+    @RequestMapping("/test")
+    public void test() throws  Exception{
+        System.out.println("写入");
+        for (int i = 0; i < 100; i++) {
+            ListenableFuture<SendResult<String, String>> send = kafkaTemplate.send("test",  "key"+i, "this is a msg");
+        }
+    }
+
+    @RequestMapping("/test2")
+    public void test2() throws  Exception{
+        System.out.println("写入");
+        for (int i = 0; i < 100; i++) {
+            ListenableFuture<SendResult<String, String>> send = kafkaTemplate.send("test2",  "key"+i, "this is a msg");
+        }
+    }
+    @RequestMapping("/test3")
+    public void test3() throws  Exception{
+        System.out.println("写入");
+        for (int i = 0; i < 100; i++) {
+            ListenableFuture<SendResult<String, String>> send = kafkaTemplate.send("test3",  "key"+i, "this is a msg");
+        }
+    }
+
+    @RequestMapping("/test4")
+    public void test4() throws  Exception{
+        System.out.println("写入");
+        for (int i = 0; i < 100; i++) {
+            ListenableFuture<SendResult<String, String>> send = kafkaTemplate.send("test4",  "key"+i, "this is a msg");
+        }
+    }
+
 }
