@@ -9,7 +9,7 @@ public class RedissonBloomFilter {
 
     public static void main(String[] args) {
         Config config = new Config();
-        config.useSingleServer().setAddress("redis://localhost:6380");
+        config.useSingleServer().setAddress("redis://localhost:6379");
         //构造Redisson
         RedissonClient redisson = Redisson.create(config);
 
@@ -24,6 +24,6 @@ public class RedissonBloomFilter {
         System.out.println(bloomFilter.contains("guojia"));//false
         System.out.println(bloomFilter.contains("baiqi"));//false
         System.out.println(bloomFilter.contains("zhuge"));//true
-        
+
     }
 }
