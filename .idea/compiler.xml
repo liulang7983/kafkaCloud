@@ -2,15 +2,16 @@
 <project version="4">
   <component name="CompilerConfiguration">
     <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
       <profile name="Maven default annotation processors profile" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="redisCloud1" />
-        <module name="kafkaCloud1" />
-        <module name="redisCloud" />
-        <module name="spring-boot-kafka" />
         <module name="spring-boot-kafka1" />
+        <module name="spring-boot-kafka" />
+        <module name="redisCloud" />
+        <module name="kafkaCloud1" />
+        <module name="redisCloud1" />
       </profile>
     </annotationProcessing>
   </component>
@@ -18,7 +19,7 @@
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="kafkaCloud1" options="-parameters" />
       <module name="redisCloud" options="-parameters" />
-      <module name="redisCloud1" options="-parameters" />
+      <module name="redisCloud1" options="" />
       <module name="spring-boot-kafka" options="-parameters" />
       <module name="spring-boot-kafka1" options="-parameters" />
     </option>

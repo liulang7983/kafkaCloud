@@ -1,4 +1,4 @@
-package com.redisson;
+package com.demo;
 
 import org.redisson.Redisson;
 import org.redisson.api.RBloomFilter;
@@ -9,7 +9,7 @@ public class RedissonBloomFilter {
 
     public static void main(String[] args) {
         Config config = new Config();
-        config.useSingleServer().setAddress("redis://localhost:6380");
+        config.useSingleServer().setAddress("redis://localhost:6379");
         //构造Redisson
         RedissonClient redisson = Redisson.create(config);
 

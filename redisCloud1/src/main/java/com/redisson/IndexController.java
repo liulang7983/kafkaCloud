@@ -1,9 +1,9 @@
 package com.redisson;
 
-import org.redisson.Redisson;
 import org.redisson.RedissonRedLock;
 import org.redisson.api.RLock;
 import org.redisson.api.RReadWriteLock;
+import org.redisson.api.RedissonClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.util.StringUtils;
@@ -20,7 +20,7 @@ import java.util.concurrent.TimeUnit;
 public class IndexController {
 
     @Autowired
-    private Redisson redisson;
+    private RedissonClient redisson;
     @Autowired
     private StringRedisTemplate stringRedisTemplate;
 

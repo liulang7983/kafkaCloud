@@ -1,6 +1,5 @@
 package com.redisson;
 
-import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import org.redisson.Redisson;
 import org.redisson.api.RLock;

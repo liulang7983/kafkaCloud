@@ -1,4 +1,4 @@
-package com.redisson;
+package com.service;
 
 import org.apache.tomcat.util.threads.ThreadPoolExecutor;
 import org.redisson.Redisson;
