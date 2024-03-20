@@ -1,4 +1,4 @@
-package com.redisson;
+package com.controller;
 
 import com.alibaba.fastjson.JSONObject;
 import com.service.ReadWriteLockService;

@@ -1,10 +1,20 @@
 package com.test;
 
-import redis.clients.jedis.HostAndPort;
-import redis.clients.jedis.JedisCluster;
-import redis.clients.jedis.JedisPoolConfig;
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import com.fasterxml.jackson.annotation.PropertyAccessor;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.jsontype.impl.LaissezFaireSubTypeValidator;
+import org.junit.After;
+import org.junit.Test;
+import org.springframework.data.redis.connection.RedisConnectionFactory;
+import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer;
+import org.springframework.data.redis.serializer.StringRedisSerializer;
+import redis.clients.jedis.*;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -12,34 +22,41 @@ import java.util.Set;
  * @date 2023/2/23 15:46
  */
 public class StringTest {
+    private static Jedis jedis= null;
+    static {
+        JedisPoolConfig jedisPoolConfig = new JedisPoolConfig();
+        jedisPoolConfig.setMaxTotal(20);
+        jedisPoolConfig.setMaxIdle(10);
+        jedisPoolConfig.setMinIdle(5);
 
-    private static JedisPoolConfig config = new JedisPoolConfig();
-    private static JedisCluster jedisCluster = null;
-
-    private static Set<HostAndPort> jedisClusterNode = new HashSet<HostAndPort>();
-
-    private void init(){
-        config.setMaxTotal(20);
-        config.setMaxIdle(10);
-        config.setMinIdle(5);
-        jedisClusterNode.add(new HostAndPort("127.0.0.1", 8001));
-        jedisClusterNode.add(new HostAndPort("127.0.0.1", 8002));
-        jedisClusterNode.add(new HostAndPort("127.0.0.1", 8003));
-        jedisClusterNode.add(new HostAndPort("127.0.0.1", 8004));
-        jedisClusterNode.add(new HostAndPort("127.0.0.1", 8005));
-        jedisClusterNode.add(new HostAndPort("127.0.0.1", 8006));
-        try {
-            //connectionTimeout：指的是连接一个url的连接等待时间
-            //soTimeout：指的是连接上一个url，获取response的返回等待时间
-            jedisCluster = new JedisCluster(jedisClusterNode, 6000, 5000, 10, "zhuge", config);
-        }catch (Exception e){
-            e.printStackTrace();
-        }
+        // timeout，这里既是连接超时又是读写超时，从Jedis 2.8开始有区分connectionTimeout和soTimeout的构造函数
+        jedis = new JedisPool(jedisPoolConfig, "127.0.0.1", 6379, 3000, null).getResource();
+    }
+    @Test
+    public void set(){
+        String set = jedis.set("张三", "张三");
+        System.out.println(set);
+    }
+    @Test
+    public void mset(){
+        String set = jedis.mset("张三", "张三","李四","李四");
+        System.out.println(set);
+    }
+    @Test
+    public void get(){
+        String str = jedis.get("张三");
+        System.out.println(str);
+    }
+    @Test
+    public void mget(){
+        List<String> mget = jedis.mget("张三", "李四","ste");
+        System.out.println(mget);
     }
 
-    public void delete(){
-        Long liming = jedisCluster.del("liming");
-        System.out.println(liming);
+    @Test
+    public void del(){
+        Long del = jedis.del("张三");
+        System.out.println(del);
     }
 
 }
