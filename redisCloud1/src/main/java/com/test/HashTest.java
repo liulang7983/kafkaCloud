@@ -5,7 +5,9 @@ import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 import redis.clients.jedis.JedisPoolConfig;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -38,16 +40,23 @@ public class HashTest {
         String hash = jedis.hmset("hash", map);
         System.out.println(hash);
     }
-    //取出头部的并删除
+
+    //取出单个值
     @Test
-    public void lpop(){
-        String list = jedis.lpop("list");
-        System.out.println(list);
+    public void hget(){
+        String hash = jedis.hget("hash", "3");
+        System.out.println(hash);
     }
-    //取出尾部的并删除
+    //取出多个值
     @Test
-    public void rpop(){
-        String list = jedis.rpop("list");
-        System.out.println(list);
+    public void hmget(){
+        List<String> hash = jedis.hmget("hash", "3", "4");
+        System.out.println(hash);
+    }
+    //取出所有的值
+    @Test
+    public void hgetAll(){
+        Map<String, String> hash = jedis.hgetAll("hash");
+        System.out.println(hash);
     }
 }
