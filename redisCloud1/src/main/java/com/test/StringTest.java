@@ -59,4 +59,12 @@ public class StringTest {
         System.out.println(del);
     }
 
+    @Test
+    public void sets(){
+        for (int i = 0; i <3000 ; i++) {
+            jedis.set("张三"+i, "张三"+i);
+        }
+
+    }
+
 }
