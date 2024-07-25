@@ -24,11 +24,6 @@ public class Test1Consumer {
     @KafkaListener(topics = TOPIC_NAME,groupId = "tulingGroup")
     public void listenTulingGroup(ConsumerRecord<String, String> record, Acknowledgment ack) {
         System.out.println();
-        try {
-            Thread.sleep(500);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
         System.out.println("进入tulingGroup");
         String value = record.value();
         System.out.println(value);

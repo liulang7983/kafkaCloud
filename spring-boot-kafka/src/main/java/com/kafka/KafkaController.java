@@ -19,13 +19,13 @@ public class KafkaController {
     @RequestMapping("/send")
     public void send() {
         System.out.println("写入");
-       kafkaTemplate.send(TOPIC_NAME, 0, "key", "this is a msg");
+       kafkaTemplate.send(TOPIC_NAME, 0, "key", "this is a send");
     }
 
     @RequestMapping("/send1")
     public void send1() throws  Exception{
         System.out.println("写入");
-        ListenableFuture<SendResult<String, String>> send = kafkaTemplate.send(TOPIC_NAME, 0, "key", "this is a msg");
+        ListenableFuture<SendResult<String, String>> send = kafkaTemplate.send(TOPIC_NAME, 0, "key", "this is a send1");
         //同步会阻塞直到拿到返回
         String s = send.get().toString();
         System.out.println(s);
@@ -34,7 +34,7 @@ public class KafkaController {
     @RequestMapping("/send2")
     public void send2() throws  Exception{
         System.out.println("写入");
-        ListenableFuture<SendResult<String, String>> send = kafkaTemplate.send(TOPIC_NAME, 0, "key", "this is a msg");
+        ListenableFuture<SendResult<String, String>> send = kafkaTemplate.send(TOPIC_NAME, 0, "key", "this is a send2");
         send.addCallback(new ListenableFutureCallback<SendResult<String, String>>() {
             @Override
             public void onFailure(Throwable throwable) {
@@ -51,7 +51,7 @@ public class KafkaController {
     public void topic0() throws  Exception{
         System.out.println("写入");
         for (int i = 0; i < 100; i++) {
-            ListenableFuture<SendResult<String, String>> send = kafkaTemplate.send("topic0",  "key", "this is a msg");
+            ListenableFuture<SendResult<String, String>> send = kafkaTemplate.send("topic0",  "key", "this is a topic0");
         }
     }
 
@@ -59,7 +59,7 @@ public class KafkaController {
     public void topic1() throws  Exception{
         System.out.println("写入");
         for (int i = 0; i < 100; i++) {
-            ListenableFuture<SendResult<String, String>> send = kafkaTemplate.send("topic1",  "key"+i, "this is a msg");
+            ListenableFuture<SendResult<String, String>> send = kafkaTemplate.send("topic1",  "key"+i, "this is a topic1");
         }
     }
 
@@ -67,7 +67,14 @@ public class KafkaController {
     public void test() throws  Exception{
         System.out.println("写入");
         for (int i = 0; i < 100; i++) {
-            ListenableFuture<SendResult<String, String>> send = kafkaTemplate.send("test",  "key"+i, "this is a msg");
+            ListenableFuture<SendResult<String, String>> send = kafkaTemplate.send("test",  "key"+i, "this is a test");
+        }
+    }
+    @RequestMapping("/test1")
+    public void test1() throws  Exception{
+        System.out.println("写入");
+        for (int i = 0; i < 100; i++) {
+            ListenableFuture<SendResult<String, String>> send = kafkaTemplate.send("test1",  "key"+i, "this is a test1");
         }
     }
 
@@ -75,14 +82,14 @@ public class KafkaController {
     public void test2() throws  Exception{
         System.out.println("写入");
         for (int i = 0; i < 100; i++) {
-            ListenableFuture<SendResult<String, String>> send = kafkaTemplate.send("test2",  "key"+i, "this is a msg");
+            ListenableFuture<SendResult<String, String>> send = kafkaTemplate.send("test2",  "key"+i, "this is a test2");
         }
     }
     @RequestMapping("/test3")
     public void test3() throws  Exception{
         System.out.println("写入");
         for (int i = 0; i < 100; i++) {
-            ListenableFuture<SendResult<String, String>> send = kafkaTemplate.send("test3",  "key"+i, "this is a msg");
+            ListenableFuture<SendResult<String, String>> send = kafkaTemplate.send("test3",  "key"+i, "this is a test3");
         }
     }
 
@@ -90,7 +97,23 @@ public class KafkaController {
     public void test4() throws  Exception{
         System.out.println("写入");
         for (int i = 0; i < 100; i++) {
-            ListenableFuture<SendResult<String, String>> send = kafkaTemplate.send("test4",  "key"+i, "this is a msg");
+            ListenableFuture<SendResult<String, String>> send = kafkaTemplate.send("test4",  "key"+i, "this is a test4");
+        }
+    }
+
+    @RequestMapping("/topic3")
+    public void topic3() throws  Exception{
+        System.out.println("写入");
+        for (int i = 0; i < 100; i++) {
+            ListenableFuture<SendResult<String, String>> send = kafkaTemplate.send("topic3",  "key"+i, "this is a topic3");
+        }
+    }
+
+    @RequestMapping("/topic4")
+    public void topic4() throws  Exception{
+        System.out.println("写入");
+        for (int i = 0; i < 100; i++) {
+            ListenableFuture<SendResult<String, String>> send = kafkaTemplate.send("topic4",  "key"+i, "this is a topic4");
         }
     }
 

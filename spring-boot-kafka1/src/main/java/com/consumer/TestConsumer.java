@@ -10,10 +10,11 @@ import org.springframework.stereotype.Component;
  * @date 2023/11/15 19:08
  */
 @Component
-public class Test3Group2Consumer {
-    //分别在两个微服务消费同一个topic，且组不相同，一个消息会被不同消费组各消费一次
-    //如果组相同，两个消费者，但是有三个分区，那就可能一个消费者消费两个分区，一个消费者只消费一个分区
-    @KafkaListener(topics = "test3",groupId = "group2")
+public class TestConsumer {
+    //删除topic bin/kafka-topics.sh --delete --topic test2 --zookeeper 172.18.26.20:2181
+    //新建两个主分片的的topic  bin/kafka-topics.sh --create --zookeeper 172.18.26.20:2181 --replication-factor 1 --partitions 2 --topic test2
+    //分别在连个微服务消费同一个topic，且组相同，name一个消息只会背心消费一次
+    @KafkaListener(topics = "test")
     public void test0(ConsumerRecord<String, String> record, Acknowledgment ack){
         String value = record.value();
         System.out.println(record.key()+"："+value);

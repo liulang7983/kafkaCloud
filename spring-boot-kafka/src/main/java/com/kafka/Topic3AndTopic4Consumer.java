@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class Topic3AndTopic4Consumer {
-    //配置多个消费组，那么此时test1的同一个消息两个消费组都可以消费到
+    //多个topic配置一个消费组，此时他会消费两个topic
     @KafkaListener(topics ="#{'${kafka.topic.topic3AndTopic4}'.split(',')}",groupId = "topic3AndTopic4Group")
     public void listentopic2Group(ConsumerRecord<String, String> record, Acknowledgment ack) {
         System.out.println("第一个消费者");
