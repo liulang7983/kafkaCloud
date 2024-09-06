@@ -1,4 +1,4 @@
-package com.kafka;
+package com.kafka.consumer;
 
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.springframework.kafka.annotation.KafkaListener;
@@ -11,7 +11,6 @@ public class Test1Consumer {
     //配置多个消费组，那么此时test1的同一个消息两个消费组都可以消费到
     @KafkaListener(topics = TOPIC_NAME,groupId = "zhugeGroup")
     public void listenZhugeGroup(ConsumerRecord<String, String> record, Acknowledgment ack) {
-        System.out.println();
         System.out.println("进入zhugeGroup");
         String value = record.value();
         System.out.println(value);
@@ -23,7 +22,6 @@ public class Test1Consumer {
 
     @KafkaListener(topics = TOPIC_NAME,groupId = "tulingGroup")
     public void listenTulingGroup(ConsumerRecord<String, String> record, Acknowledgment ack) {
-        System.out.println();
         System.out.println("进入tulingGroup");
         String value = record.value();
         System.out.println(value);

@@ -1,4 +1,4 @@
-package com.kafka;
+package com.kafka.consumer;
 
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.springframework.kafka.annotation.KafkaListener;
@@ -16,6 +16,7 @@ public class Test3Group1Consumer {
     @KafkaListener(topics = "test3",groupId = "group1")
     public void test0(ConsumerRecord<String, String> record, Acknowledgment ack){
         String value = record.value();
+        System.out.println("消费组:group1");
         System.out.println(record.key()+"："+value);
         ack.acknowledge();
     }

@@ -16,6 +16,15 @@ public class Test3Group2Consumer {
     @KafkaListener(topics = "test3",groupId = "group2")
     public void test0(ConsumerRecord<String, String> record, Acknowledgment ack){
         String value = record.value();
+        System.out.println("消费组:group2");
+        System.out.println(record.key()+"："+value);
+        ack.acknowledge();
+    }
+
+    @KafkaListener(topics = "test3",groupId = "group1")
+    public void test1(ConsumerRecord<String, String> record, Acknowledgment ack){
+        String value = record.value();
+        System.out.println("消费组:group1");
         System.out.println(record.key()+"："+value);
         ack.acknowledge();
     }
