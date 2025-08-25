@@ -13,6 +13,7 @@ import org.springframework.stereotype.Component;
 public class BroadcastingConsumer {
     //同一个主题，两个组消费，每个组有两个组员，那么两个组都消费全部消息，每个组内按照一定规则分配这些消息
     //此时是存在三个分片，那么有一个组员消费了两个分片，大概是一个67，一个33
+    //kafka-topics.bat --alter --partitions 3 --zookeeper 127.0.0.1:2181  --topic broadcastingTopic
     @KafkaListener(topics = "broadcastingTopic",groupId = "broadcastingTopicGroup1")
     public void broadcastingTopic1(ConsumerRecord<String, String> record, Acknowledgment ack){
         String value = record.value();
